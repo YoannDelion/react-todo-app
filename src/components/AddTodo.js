@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+
 class AddTodo extends Component {
     state = {
         title: ''
@@ -24,13 +25,12 @@ class AddTodo extends Component {
                     placeholder='Add Todo Item...' 
                     value={ this.state.title }
                     onChange={ this.onChange }
-                    style={{ flex:'10', padding: '5px' }}
+                    className='inputStyle'
                 />
                 <input 
                     type='submit'
                     value='Submit'
                     className="btn"
-                    style={{ flex:'1' }}
                 />
             </form>
         );

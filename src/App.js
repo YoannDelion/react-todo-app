@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from './components/layout/Header';
-import './App.css';
 import Todos from './components/Todos';
 import AddTodo from './components/AddTodo';
 import About from './components/pages/About';
 import axios from 'axios';
+
+import './App.css';
 
 class App extends Component {
     state = {
         todos: []
     }
 
+    //fetch todos from server
     componentDidMount() {
         axios.get('https://jsonplaceholder.typicode.com/todos?_limit=5')
         .then(res => this.setState({todos: res.data}));
@@ -54,13 +56,15 @@ class App extends Component {
                 <div className="App">
                     <div className='container'>
                         <Header />
-                        <Route exact path='/' render={ props => (
-                            <React.Fragment>
-                                <AddTodo addTodo={ this.addTodo } />
-                                <Todos todos={ this.state.todos } toggleComplete={ this.toggleComplete } deleteTodo={ this.deleteTodo } />
-                            </React.Fragment>
-                        )} />
-                        <Route path='/about' component={ About } />
+                        <div className='appContent'>
+                            <Route exact path='/' render={ props => (
+                                <React.Fragment>
+                                    <AddTodo addTodo={ this.addTodo } />
+                                    <Todos todos={ this.state.todos } toggleComplete={ this.toggleComplete } deleteTodo={ this.deleteTodo } />
+                                </React.Fragment>
+                            )} />
+                            <Route path='/about' component={ About } />
+                        </div>  
                     </div>
                 </div>
             </Router>

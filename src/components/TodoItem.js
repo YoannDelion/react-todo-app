@@ -5,7 +5,7 @@ class TodoItem extends Component {
     //arrow function for binding
     getStyle = () => {
         return {
-            background: '#f4f4f4',
+            background: this.props.todo.completed ? '#f4f4f4' : '#fff',
             padding:'10px',
             borderBottom: '1px #ccc solid',
             textDecoration: this.props.todo.completed ? 'line-through' : 'none'
@@ -19,7 +19,7 @@ class TodoItem extends Component {
                 <p>
                     <input type='checkbox' onChange={ this.props.toggleComplete.bind(this, id) } /> {' '}
                     { title }
-                    <button style={ btnStyle } onClick={ this.props.deleteTodo.bind(this, id) }>X</button>
+                    <button className='deleteBtnStyle' onClick={ this.props.deleteTodo.bind(this, id) }>X</button>
                 </p>
             </div>
         )
@@ -30,16 +30,6 @@ TodoItem.propTypes = {
     todo: PropTypes.object.isRequired,
     toggleComplete: PropTypes.func.isRequired,
     deleteTodo: PropTypes.func.isRequired,
-}
-
-const btnStyle = {
-    background: '#f00',
-    color: 'white',
-    border: 'none',
-    padding: '5px 9px',
-    borderRadius: '50%',
-    cursor: 'pointer',
-    float: 'right'
 }
 
 export default TodoItem;
